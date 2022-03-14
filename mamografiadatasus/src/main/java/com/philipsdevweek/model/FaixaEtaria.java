@@ -9,7 +9,7 @@ import javax.persistence.Id;
 public class FaixaEtaria {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	private Long id;
 	private Integer faixa_i;
 	private Integer faixa_n;

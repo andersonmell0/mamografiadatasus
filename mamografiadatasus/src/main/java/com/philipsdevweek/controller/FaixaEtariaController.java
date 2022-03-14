@@ -30,20 +30,30 @@ public class FaixaEtariaController {
 		try {
 			List<FaixaEtaria> lista = service.buscarTodos();
 			return new ResponseEntity<>(lista, HttpStatus.OK);
-		} 
+		}
+		
 		catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<FaixaEtaria> getById(@PathVariable Long id) {
-		Optional<FaixaEtaria> optional = service.buscarPorId(id);
-		if (optional.isPresent()) {
-			FaixaEtaria objetoSelecionado = optional.get();
-			return new ResponseEntity<FaixaEtaria>(objetoSelecionado, HttpStatus.OK);
+		
+		try {
+			Optional<FaixaEtaria> optional = service.buscarPorId(id);
+			if (optional.isPresent()) {
+				FaixaEtaria objetoSelecionado = optional.get();
+				return new ResponseEntity<FaixaEtaria>(objetoSelecionado, HttpStatus.OK);
+			}
 		}
+		
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 	
